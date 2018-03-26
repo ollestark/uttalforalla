@@ -1,0 +1,153 @@
+﻿
+.scp-quizzes-main {
+    width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.scp-quizzes-data {
+    box-shadow: 0px 1px 3px -1px #DCDCDC;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+pre {
+    border: 2px solid #f5f5f5;
+    padding: 10px;
+    overflow-x: scroll;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+    input[type=radio] + label {
+        display: inline-block;
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+        input[type=radio] + label:hover {
+            border: 1px solid #000000;
+        }
+
+    /*input[type=radio]:checked + label {
+        background-image: none;
+        background-color: #0C0;
+        color: #fff;
+        border: 1px solid #0C0 !important;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }*/
+
+.worngans {
+    background-color: #F36;
+    color: #fff;
+    border: 1px solid #F36 !important;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.worngans2 {
+    background-color: #0C0;
+    color: #fff;
+    border: 1px solid #F36 !important;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+/* ##########  FÖR LJUDKARUSELLEN      ################################*/
+* {
+    box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    /*position: absolute;*/
+    top: 100%;
+    width: 100%;
+    /*margin-top: -22px;
+    padding: 16px;*/
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Position the "prev button" to the left */
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+
+/* ######### FRÅGEKARUSELLEN #########*/
+
+.myQuestions {
+    display: none;
+}
+
+.dotQuestion {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+    .activeQuestion, .dotQuestion:hover {
+        background-color: #717171;
+    }

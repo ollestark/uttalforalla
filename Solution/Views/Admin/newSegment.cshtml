@@ -1,0 +1,84 @@
+﻿@model Solution.Models.Segment
+
+@{
+    ViewBag.Title = "Nytt segment";
+}
+<head>
+    <link href="~/navbar.css" rel="stylesheet" />
+</head>
+
+
+<div class="navbar-fixed-top" style="position:fixed; top: 0; left: 0; right: 0; z-index:2">
+    <ul>
+        <li style="background-color: #111">@Html.ActionLink("Segment", "newSegment", "Admin")</li>
+        <li>@Html.ActionLink("Kategorier", "newCategory", "Admin")</li>
+        <li>@Html.ActionLink("Underkategori", "newSubCategory", "Admin")</li>
+        <li>@Html.ActionLink("Uppgifter", "newAssignment", "Admin")</li>
+        <li style="float:right">@Html.ActionLink("Logga ut", "Index", "Login")</li>
+    </ul>
+</div>
+<br />
+        <h2>Lägg till nytt segment</h2>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.URL, "Videolänk", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.URL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.URL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, "Segmentnamn", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Spara" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Namn <!--@Html.DisplayNameFor(model => model.Name)-->
+                </th>
+                <th>
+
+                Videolänk <!--@Html.DisplayNameFor(model => model.URL)-->
+                </th>
+                <th></th>
+            </tr>
+
+
+
+        @foreach (var item in ViewBag.segments)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.URL
+                </td>
+                <td>
+                    @Html.ActionLink("Ändra", "EditSegment", new { id = item.Id }) |
+                    @Html.ActionLink("Radera", "DeleteSegment", new { id = item.Id })
+                </td>
+            </tr>
+}
+
+</table>

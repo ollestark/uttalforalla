@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SfiDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Categories_ID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategories_ID" Type="Int32" />
+    <Property Name="Assignment_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Audio_File" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Assignment_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Answer_One" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Answer_Two" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Answer_Three" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Answer_Four" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Answer_Five" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Answer_Six" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Correct_Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Assignments_Categories" FromRole="Assignments" ToRole="Categories" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK_Assignments_SubCategories" FromRole="Assignments" ToRole="SubCategories" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Segment_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignments_Categories" FromRole="Categories" ToRole="Assignments" />
+    <NavigationProperty Name="Segment" Relationship="Self.FK_Categories_Segments" FromRole="Categories" ToRole="Segments" />
+    <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategories_Categories" FromRole="Categories" ToRole="SubCategories" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Segment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Categories_Segments" FromRole="Segments" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="StartPageMovie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignments_SubCategories" FromRole="SubCategories" ToRole="Assignments" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_SubCategories_Categories" FromRole="SubCategories" ToRole="Categories" />
+  </EntityType>
+  <Association Name="FK_Assignments_Categories">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="Categories_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Assignments_SubCategories">
+    <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="0..1" />
+    <End Role="Assignments" Type="Self.Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="SubCategories_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Categories_Segments">
+    <End Role="Segments" Type="Self.Segment" Multiplicity="1" />
+    <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Segments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Categories">
+        <PropertyRef Name="Segment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategories_Categories">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubCategories">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SfiDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Segments" EntityType="Self.Segment" />
+    <EntitySet Name="StartPageMovies" EntityType="Self.StartPageMovie" />
+    <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
+    <AssociationSet Name="FK_Assignments_Categories" Association="Self.FK_Assignments_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Assignments_SubCategories" Association="Self.FK_Assignments_SubCategories">
+      <End Role="SubCategories" EntitySet="SubCategories" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Categories_Segments" Association="Self.FK_Categories_Segments">
+      <End Role="Segments" EntitySet="Segments" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategories_Categories" Association="Self.FK_SubCategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="SubCategories" EntitySet="SubCategories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

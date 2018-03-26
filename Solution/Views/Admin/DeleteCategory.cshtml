@@ -1,0 +1,40 @@
+﻿@model Solution.Models.Category
+
+@{
+    ViewBag.Title = "Radera kategori";
+}
+
+<h2>Raderar kategori</h2>
+
+<h3>Är du säker på att du vill fortsätta?</h3>
+<div>
+    <h4>Kategori:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Segment.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Segment.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SfiDbModelStoreContainer" CdmEntityContainer="SfiDbEntities">
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="SfiDbModel.Assignment">
+        <MappingFragment StoreEntitySet="Assignments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Categories_ID" ColumnName="Categories_ID" />
+          <ScalarProperty Name="SubCategories_ID" ColumnName="SubCategories_ID" />
+          <ScalarProperty Name="Assignment_Type" ColumnName="Assignment_Type" />
+          <ScalarProperty Name="Audio_File" ColumnName="Audio_File" />
+          <ScalarProperty Name="Assignment_Title" ColumnName="Assignment_Title" />
+          <ScalarProperty Name="Answer_One" ColumnName="Answer_One" />
+          <ScalarProperty Name="Answer_Two" ColumnName="Answer_Two" />
+          <ScalarProperty Name="Answer_Three" ColumnName="Answer_Three" />
+          <ScalarProperty Name="Answer_Four" ColumnName="Answer_Four" />
+          <ScalarProperty Name="Answer_Five" ColumnName="Answer_Five" />
+          <ScalarProperty Name="Answer_Six" ColumnName="Answer_Six" />
+          <ScalarProperty Name="Correct_Answer" ColumnName="Correct_Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="SfiDbModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Segment_ID" ColumnName="Segment_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="SfiDbModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Segments">
+      <EntityTypeMapping TypeName="SfiDbModel.Segment">
+        <MappingFragment StoreEntitySet="Segments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StartPageMovies">
+      <EntityTypeMapping TypeName="SfiDbModel.StartPageMovie">
+        <MappingFragment StoreEntitySet="StartPageMovie">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategories">
+      <EntityTypeMapping TypeName="SfiDbModel.SubCategory">
+        <MappingFragment StoreEntitySet="SubCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

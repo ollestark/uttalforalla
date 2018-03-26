@@ -1,0 +1,22 @@
+﻿@model List <Solution.Models.SubCategory>
+@{
+    ViewBag.Title = "SubCategory";
+}
+<!-- Kommetnar -->
+<head>
+    <link href="~/navbar.css" rel="stylesheet" />
+</head>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">Startsida</a>
+</nav>
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("Assignment", "Home", FormMethod.Post))
+{
+    foreach (var item in Model)
+    {
+        <button class="btn btn-block btn-lg btn-primary" name="SubCategory" value="@item.Id">@item.Name</button>
+    }
+}

@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">Startsida</a>
+</nav>
+<br />
+<h2>Oops...</h2>
+<h4>Något gick fel, gå tillbaka och försök igen</h4>
+<input type="button" value="Startsida" class="btn btn-block btn-lg btn-danger" onclick="location.href='@Url.Action("Index", "Home")'" />

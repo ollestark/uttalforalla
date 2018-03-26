@@ -1,0 +1,104 @@
+﻿@model Solution.Models.Assignment
+
+@{
+    ViewBag.Title = "Radera uppgift";
+}
+
+<h2>Raderar uppgift</h2>
+
+<h3>Är du säker på att du vill fortsätta?</h3>
+<div>
+    <h4>Uppgift:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assignment_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assignment_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Audio_File)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Audio_File)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer_One)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer_One)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer_Two)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer_Two)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer_Three)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer_Three)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer_Four)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer_Four)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer_Five)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer_Five)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer_Six)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer_Six)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correct_Answer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correct_Answer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

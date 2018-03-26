@@ -1,0 +1,391 @@
+﻿@model IEnumerable<Solution.Models.Assignment>
+
+@{
+    ViewBag.Title = "Assignment";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="~/Quiz.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <!--##########  SCRIPT FÖR FRÅGEKARUSELL  ###########-->
+    <script>
+        /*window.onload = function () {
+            showQuestions(1);
+        };
+        */
+        var questionIndex = 1;
+        showQuestions(questionIndex);
+        plusQuestions(questionIndex);
+
+        function plusQuestions(n) {
+            showQuestions(questionIndex += n);
+        }
+
+        function currentQuestion(n) {
+            showQuestions(questionIndex = n);
+        }
+
+        function showQuestions(n) {
+            var i;
+            var questions = document.getElementsByClassName("myQuestions");
+            var dotsQuestion = document.getElementsByClassName("dotQuestion");
+            if (n > questions.length) { questionIndex = 1 }
+            if (n < 1) { questionIndex = question.length }
+            for (i = 0; i < questions.length; i++) {
+                questions[i].style.display = "none";
+            }
+            for (i = 0; i < dotsQuestion.length; i++) {
+                dotsQuestion[i].className = dotsQuestion[i].className.replace(" activeQuestion", "");
+            }
+            questions[questionIndex - 1].style.display = "block";
+            dotsQuestion[questionIndex - 1].className += " activeQuestion";
+        }
+    </script>
+    <!--##########  SCRIPT FÖR FRÅGEKARUSELL  ##########-->
+
+    <!--##########  SCRIPT FÖR LJUDKARUSELL  ##########-->
+    <script>
+        window.onload = function () {
+            if ($("#first").length) {
+
+                showQuestions(1);
+
+            }
+            if ($("#second").length) {
+
+                showSlides(1);
+
+            }
+            
+        };
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        plusSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+    <!--##########  SCRIPT FÖR SCROLLEN  ##########-->
+    <script>
+        $(document).ready(function (){
+            $('a[href^="#"]').on('click', function (e) {
+                e.preventDefault();
+                var target = this.hash;
+                var $target = $(target);
+                $('html, body').animate({
+                    'scrollTop': $target.offset().top
+                }, 1000, 'swing');
+            })  
+        })
+    </script>
+    <style>
+        hr.style1 {
+            border-top: 1px solid #8c8b8b;
+        }
+    </style>
+</head>
+<body style="text-align:center">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">Startsida</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);" onclick="history.go(-1);">Fler kategorier <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#first">Svara rätt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#second">Spela in</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br />
+    <br />
+@if (Model.Where(m => m.Assignment_Type == "Svara rätt").Count() > 1)
+{
+    <div class="container-fluid" id="first">
+        <br />
+        <br />
+        <br />
+        <br />
+    <h1 class="revealOnScroll" data-animation="fadeInUp"></h1>
+        <div class="card text-center border: 25px">
+            <div class="card-block">
+                <div class="slideshow-container">
+                    <br />
+                    <div>
+                        <!--<a style="cursor:pointer; margin-right:8px" onclick="plusQuestions(-1)">&#10094;</a>
+                        @for (var i = 1; i < Model.Where(m => m.Assignment_Type == "Svara rätt").Count() + 1; i++)
+                        {
+                            <span class="dotQuestion" style="height:25px; width:25px; border-radius:0; margin-left:-7px;" onclick="currentQuestion(@i)"><span style="color:white; font-size:18px">@i</span></span>
+                        }-->
+                        <a style="cursor:pointer; font-size:30px" onclick="plusQuestions(1)">&#10095;</a>
+                        <!-- Operation failed -->
+                        <!--<span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>-->
+                    </div>
+                    
+                    @foreach (var item in Model.Where(i => i.Assignment_Type == "Svara rätt"))
+                    {
+                        <div class="myQuestions">
+                            <div>
+                                <p>
+                                    <audio controls="controls" style="max-width:250px">
+                                        <source src="~/Uploads/@item.Audio_File" />
+                                    </audio>
+                                </p>
+                                <p>@item.Assignment_Title</p>
+                            </div>
+
+
+                            <div class="scp-quizzes-main">
+                                <div class="scp-quizzes-data">
+                                    @if (item.Answer_One != null)
+                                    {
+                                        <input type="radio" class="answer">
+                                        <label for="@item.Answer_One" class="answer" value="@item.Correct_Answer">@Html.Raw(@item.Answer_One)</label><br />
+                                    }
+                                    @if (item.Answer_Two != null)
+                                    {
+                                        <input type="radio" class="answer">
+                                        <label for="@item.Answer_Two" class="answer" value="@item.Correct_Answer">@Html.Raw(@item.Answer_Two)</label><br />
+                                    }
+                                    @if (item.Answer_Three != null)
+                                    {
+                                        <input type="radio" value="@item.Answer_Three" class="answer">
+                                        <label for="@item.Answer_Three" class="answer" value="@item.Correct_Answer">@Html.Raw(@item.Answer_Three)</label><br />
+                                    }
+                                    @if (item.Answer_Four != null)
+                                    {
+                                        <input type="radio" value="@item.Answer_Four" class="answer">
+                                        <label for="@item.Answer_Four" class="answer" value="@item.Correct_Answer">@Html.Raw(@item.Answer_Four)</label><br />
+                                    }
+                                    @if (item.Answer_Five != null)
+                                    {
+                                        <input type="radio" value="@item.Answer_Five" class="answer">
+                                        <label for="@item.Answer_Five" class="answer" value="@item.Correct_Answer">@Html.Raw(@item.Answer_Five)</label><br />
+                                    }
+                                    @if (item.Answer_Six != null)
+                                    {
+                                        <input type="radio" value="@item.Answer_Six" class="answer">
+                                        <label for="@item.Answer_Six" class="answer" value="@item.Correct_Answer">@Html.Raw(@item.Answer_Six)</label><br />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    @if (Model.Where(m => m.Assignment_Type == "Spela in").Count() > 1)
+    {
+        <div class="container-fluid" id="second">
+            <div class="card text-center">
+                <br />
+                <div style="text-align:center">
+                    <!--<a style="cursor:pointer; margin-right:8px" onclick="plusSlides(-1)">&#10094;</a>
+                    @for (var i = 1; i < Model.Where(m => m.Assignment_Type == "Spela in").Count() + 1; i++)
+                {
+                        <span class="dot" style="height:25px; width:25px; border-radius:0; margin-left:-7px;" onclick="currentSlide(@i)"><span style="color:white; font-size:18px">@i</span></span>
+                    }-->
+                    <a style="cursor:pointer" onclick="plusSlides(1)">&#10095;</a>
+
+                </div>
+
+                <div class="card-block">
+                    <div class="slideshow-container">
+
+                        @foreach (var item in Model.Where(i => i.Assignment_Type == "Spela in"))
+                        {
+                <!-- Slideshow container -->
+                    <!-- Full-width images with number and caption text -->
+                            <div class="mySlides">
+                                <p>@item.Assignment_Title</p>
+                                <p>Jämför:</p>
+                                <audio controls="controls" style="max-width:250px">
+                                    <source src="~/Uploads/@item.Audio_File" />
+                                </audio>
+                                <br />
+                                <button class="showHelpText">Visa</button>
+                                <p class="helpText" style="display:none">
+                                    @Html.Raw(@item.Correct_Answer)
+                                </p>
+                            </div>
+                        }
+                        <br />
+                    </div>
+
+                </div>
+
+
+                <!-- Nya start -->
+                <div class="card text-center">
+                    <div class="card-block">
+                        <div>
+                            <br />
+                            <p style="text-align:center">
+                                <input type="image" src="~/Content/img/record.jpg" alt="Submit" id="startRecord" width="48" height="48" style="display:block; margin:auto">
+                                <input type="image" src="~/Content/img/stoprecord.jpg" alt="Submit" id="stopRecord" width="48" height="48" style="display:none; margin:auto">
+                            </p>
+                            <p>Din inspelning:</p>
+                            <audio id=recordedAudio style="max-width:250px"></audio>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <!-- Nya slut-->
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    }
+</body>
+</html>
+
+<!-- ######## SPELA IN LJUD  #######-->
+<script>
+navigator.mediaDevices.getUserMedia({audio:true})
+.then(stream => {
+rec = new MediaRecorder(stream);
+rec.ondataavailable = e => {
+audioChunks.push(e.data);
+if (rec.state == "inactive"){
+let blob = new Blob(audioChunks,{type:'audio/x-mpeg-3'});
+recordedAudio.src = URL.createObjectURL(blob);
+recordedAudio.controls=true;
+recordedAudio.autoplay=true;
+audioDownload.href = recordedAudio.src;
+audioDownload.download = 'mp3';
+audioDownload.innerHTML = 'download';
+}
+}
+})
+.catch(e=>console.log(e));
+
+startRecord.onclick = e => {
+startRecord.disabled = true;
+stopRecord.disabled=false;
+audioChunks = [];
+rec.start();
+}
+stopRecord.onclick = e => {
+startRecord.disabled = false;
+stopRecord.disabled=true;
+rec.stop();
+}
+</script>
+
+<!-- ######## SPELA IN LJUD  #######-->
+<!---->
+<!-- ######## QUIZ CHANGE COLOR  #######-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('label.answer').click(function () {
+            var clickedAnswer = $(this).attr('for');
+            var rightAnswer = $(this).attr('value');
+            if (clickedAnswer == rightAnswer)
+            {
+                $('label').removeClass('worngans')
+                $('label').removeClass('worngans2')
+                $(this).addClass('worngans2');
+                setTimeout(function () {
+                    plusQuestions(1);
+
+                }, 1500); 
+            }
+            else
+            {
+                $('label').removeClass('worngans')
+                $('label').removeClass('worngans2')
+                $(this).addClass('worngans');
+            }
+            //Obligatorisk commit comment
+             });
+         });
+</script>
+<!-- ######## QUIZ CHANGE COLOR  #######-->
+
+<!--##########  Visa/dölj hjälptext ###### -->
+<script>
+    $(document).ready(function () {
+        $(".showHelpText").click(function () {
+            $(".helpText").toggle();
+            if ($('.helpText').css('display') == 'block'){
+                $(".showHelpText").text('Dölj');
+            }
+            else {
+                $(".showHelpText").text('Visa');
+            }
+        });
+    });
+</script>
+<!--##########  Visa/dölj hjälptext ###### -->
+
+<!--##########  Toggla inspelning-/stopp-knapp ###### -->
+<script>
+    $(document).ready(function () {
+        $("#startRecord, #stopRecord").click(function () {
+            $("#startRecord, #stopRecord").toggle();
+            if ($('#startRecord').css('display') == 'block') {
+                $('#startRecord').css('display') == 'none';
+                $('#stopRecord').css('display') == 'block';
+            }
+            else if ($('#stopRecord').css('display') == 'block') {
+                $('#stopRecord').css('display') == 'none';
+                $('#startRecord').css('display') == 'block';
+            }
+        });
+    });
+</script>
+<!--##########  Visa/dölj hjälptext ###### -->
